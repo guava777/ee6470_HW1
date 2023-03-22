@@ -160,17 +160,9 @@ void Testbench::do_sobel() {
       total = i_result.read();
       //cout << "Now at " << sc_time_stamp() << total << endl; //print current sc_time
 
-      if (total - THRESHOLD >= 0) {
-        // black
-        *(target_bitmap + bytes_per_pixel * (width * y + x) + 2) = 64;
-        *(target_bitmap + bytes_per_pixel * (width * y + x) + 1) = 64;
-        *(target_bitmap + bytes_per_pixel * (width * y + x) + 0) = 64;
-      } else {
-        // white
-        *(target_bitmap + bytes_per_pixel * (width * y + x) + 2) = WHITE;
-        *(target_bitmap + bytes_per_pixel * (width * y + x) + 1) = WHITE;
-        *(target_bitmap + bytes_per_pixel * (width * y + x) + 0) = WHITE;
-      }
+      *(target_bitmap + bytes_per_pixel * (width * y + x) + 2) = total;
+      *(target_bitmap + bytes_per_pixel * (width * y + x) + 1) = total;
+      *(target_bitmap + bytes_per_pixel * (width * y + x) + 0) = total;
     }
   }
   sc_stop();
